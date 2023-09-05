@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import CoreData
 
 class NewsTableViewController: UITableViewController {
     var viewModel: NewsViewModel
@@ -59,12 +60,28 @@ class NewsTableViewController: UITableViewController {
             cell.newsImageHeightConstraint.priority = .defaultHigh
         }
         
-        cell.setData(cellType: .init(newsModel: news))
+        cell.newsModel = news
+        
+        cell.setData(cellType: .init(newsModel: news, isFavorite: fetchNews(item: news)))
         
         if indexPath.row == self.news.articles.count - 1 {
             page += 1
             viewModel.getNews(page: page)
         }
         return cell
+    }
+    
+    private func fetchNews(item: NewsModel) -> Bool {
+        let newsFetch: NSFetchRequest<News> = News.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(News.addDate), ascending: false)
+        newsFetch.sortDescriptors = [sortByDate]
+        do {
+            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
+            let results = try managedContext.fetch(newsFetch)
+            return (results.first(where: { item.content == $0.content && item.publishedAt == $0.publishedDate }) != nil)
+        } catch let error as NSError {
+            print("Fetch error: \(error) description: \(error.userInfo)")
+            return false
+        }
     }
 }

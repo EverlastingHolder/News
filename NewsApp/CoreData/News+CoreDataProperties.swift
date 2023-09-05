@@ -12,7 +12,8 @@ extension News {
     @NSManaged public var title: String?
     @NSManaged public var content: String?
     @NSManaged public var image: Data?
-
+    @NSManaged public var publishedDate: String?
+    @NSManaged public var addDate: Date?
 }
 
 extension News : Identifiable {
