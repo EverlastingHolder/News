@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "A008C2E6-C6BF-405B-B2C9-F575245F15BA"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25C8E1EA-631B-406F-8307-CAC8A39DFF6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsApp/NewsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "news"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3331336-B0ED-4056-A77D-0E352BF14765"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsApp/Features/News/View/NewsTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "setData(cellType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D3331336-B0ED-4056-A77D-0E352BF14765 - f47bfedf37585819"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in NewsApp.NewsTableViewCell.setData(cellType: NewsApp.NewsTableViewCellModel) -&gt; ()"
+                  moduleName = "NewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holder/Documents/project/Pet/NewsApp/NewsApp/Features/News/View/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "D3331336-B0ED-4056-A77D-0E352BF14765 - ad2fbd8cda00d3c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in NewsApp.NewsTableViewCell.setData(cellType: NewsApp.NewsTableViewCellModel) -&gt; ()"
+                  moduleName = "NewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holder/Documents/project/Pet/NewsApp/NewsApp/Features/News/View/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "D3331336-B0ED-4056-A77D-0E352BF14765 - 25e9f615828de01d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in NewsApp.NewsTableViewCell.setData(cellType: NewsApp.NewsTableViewCellModel) -&gt; ()"
+                  moduleName = "NewsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holder/Documents/project/Pet/NewsApp/NewsApp/Features/News/View/NewsTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
