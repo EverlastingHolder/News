@@ -70,9 +70,7 @@ class NewsTableViewController: UITableViewController {
             cell.newsImageHeightConstraint.priority = .defaultHigh
         }
         
-        cell.newsModel = news
-        
-        cell.setData(cellType: .init(newsModel: news, isFavorite: fetchNews(item: news)))
+        cell.setData(cellType: .init(newsModel: news))
         
         if indexPath.row == self.news.articles.count - 1 {
             page += 1
