@@ -3,25 +3,18 @@ import Combine
 import CoreData
 
 class NewsTableViewController: UITableViewController {
-    var viewModel: NewsViewModel
-    var news: ResultModel {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var viewModel: NewsTableViewModel
     
     private var page = 1
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: NewsViewModel, news: ResultModel) {
+    init(viewModel: NewsTableViewModel) {
         self.viewModel = viewModel
-        self.news = news
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.viewModel = .init()
-        self.news = .init(status: "", totalResults: 0, articles: [])
+        self.viewModel = .init(news: .init(status: "", totalResults: 0, articles: []))
         super.init(coder: coder)
     }
     
@@ -33,7 +26,7 @@ class NewsTableViewController: UITableViewController {
     private func bindViewModel() {
         viewModel.$news
             .sink { [unowned self] news in
-                self.news = news
+                tableView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -43,11 +36,11 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.articles.count
+        return viewModel.news.articles.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let news = news.articles[indexPath.row]
+        let news = viewModel.news.articles[indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detail = storyboard.instantiateViewController(identifier: "NewsDetailViewController") as! NewsDetailViewController
@@ -61,7 +54,7 @@ class NewsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
         
         
-        let news = news.articles[indexPath.row]
+        let news = viewModel.news.articles[indexPath.row]
         
         if news.urlToImage == nil {
             cell.newsImageHeightConstraint.priority = .defaultLow
@@ -73,7 +66,7 @@ class NewsTableViewController: UITableViewController {
         
         cell.setData(cellType: .init(newsModel: news))
         
-        if indexPath.row == self.news.articles.count - 1 {
+        if indexPath.row == viewModel.news.articles.count - 1 {
             page += 1
             viewModel.getNews(page: page)
         }
