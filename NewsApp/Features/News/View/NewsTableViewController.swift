@@ -45,14 +45,13 @@ class NewsTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detail = storyboard.instantiateViewController(identifier: "NewsDetailViewController") as! NewsDetailViewController
         detail.newsModel = news
-        detail.isFavorite = fetchNews(item: news)
+        detail.isFavorite = (CoreDataService.shared.findNews(news) != nil)
         
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
-        
         
         let news = viewModel.news.articles[indexPath.row]
         
@@ -71,19 +70,5 @@ class NewsTableViewController: UITableViewController {
             viewModel.getNews(page: page)
         }
         return cell
-    }
-    
-    private func fetchNews(item: NewsModel) -> Bool {
-        let newsFetch: NSFetchRequest<News> = News.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: #keyPath(News.addDate), ascending: false)
-        newsFetch.sortDescriptors = [sortByDate]
-        do {
-            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
-            let results = try managedContext.fetch(newsFetch)
-            return (results.first(where: { item.content == $0.content && item.publishedAt == $0.publishedDate }) != nil)
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-            return false
-        }
     }
 }

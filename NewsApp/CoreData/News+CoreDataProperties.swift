@@ -16,6 +16,7 @@ extension News {
     @NSManaged public var addDate: Date?
     @NSManaged public var author: String?
     @NSManaged public var newsDescription: String?
+    @NSManaged public var newsLink: String?
 }
 
 extension News : Identifiable {

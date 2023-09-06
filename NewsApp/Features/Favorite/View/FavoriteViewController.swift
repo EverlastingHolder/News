@@ -21,29 +21,47 @@ class FavoriteViewController: UIViewController {
             .sink { [unowned self] status in
                 switch status {
                 case .loading:
-                    addChild(child)
-                    child.view.frame = view.frame
-                    view.addSubview(child.view)
-                    child.didMove(toParent: self)
+                    addChildView(child)
                 case .success(let model):
-                    child.willMove(toParent: nil)
-                    child.view.removeFromSuperview()
-                    child.removeFromParent()
+                    removeProgressView()
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tableView = storyboard.instantiateViewController(identifier: "FavoriteTableViewController") as! FavoriteTableViewController
                     tableView.news = model
                     
-                    addChild(tableView)
-                    tableView.view.frame = view.frame
-                    view.addSubview(tableView.view)
-                    tableView.didMove(toParent: self)
-                    
+                    addChildView(tableView)
                 case .error:
-                    child.willMove(toParent: nil)
-                    child.view.removeFromSuperview()
-                    child.removeFromParent()
+                    removeProgressView()
+                case .empty:
+                    removeProgressView()
+                    addTitle()
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func addTitle() {
+        let label = UILabel()
+        label.text = "Нет избранных новостей"
+        label.font = .systemFont(ofSize: 16)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(label)
+        
+        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
+    
+    private func removeProgressView() {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+    }
+    
+    private func addChildView(_ viewController: UIViewController) {
+        addChild(viewController)
+        viewController.view.frame = view.frame
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
     }
 }

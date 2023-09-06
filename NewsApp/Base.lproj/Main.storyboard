@@ -201,26 +201,35 @@
                                                 <rect key="frame" x="6" y="6" width="381" height="753"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="creator" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHX-mV-zI2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="381" height="408"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="381" height="385"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyx-VQ-CW3" userLabel="Published">
-                                                        <rect key="frame" x="0.0" y="414" width="381" height="17"/>
+                                                        <rect key="frame" x="0.0" y="391" width="381" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" systemColor="systemGray2Color"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rI9-dv-P9M">
-                                                        <rect key="frame" x="0.0" y="437" width="381" height="33.666666666666686"/>
+                                                        <rect key="frame" x="0.0" y="414" width="381" height="33.666666666666686"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descript" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCg-R2-MnI">
-                                                        <rect key="frame" x="0.0" y="476.66666666666663" width="381" height="20.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="453.66666666666663" width="381" height="20.333333333333314"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmy-jV-O8P">
+                                                        <rect key="frame" x="0.0" y="480" width="381" height="17"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -276,6 +285,7 @@
                         <outlet property="creatorLabel" destination="XHX-mV-zI2" id="uxs-lc-UK7"/>
                         <outlet property="favoriteNavigationButton" destination="euL-GC-RWs" id="3Dw-Ej-DV9"/>
                         <outlet property="high" destination="kdD-jq-9pG" id="ktX-zr-YKG"/>
+                        <outlet property="linkLabel" destination="tmy-jV-O8P" id="GVm-iD-KfP"/>
                         <outlet property="low" destination="ZM2-JT-G1q" id="o3H-J5-Nfo"/>
                         <outlet property="newsImage" destination="aWh-dj-onH" id="ZlA-GK-r41"/>
                         <outlet property="publishedDateLabel" destination="tyx-VQ-CW3" id="w7b-ms-lra"/>

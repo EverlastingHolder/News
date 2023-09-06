@@ -19,6 +19,7 @@
 		09D7318F2AA8564E00DA97D2 /* NewsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7318E2AA8564E00DA97D2 /* NewsTableViewModel.swift */; };
 		09D731912AA8665A00DA97D2 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D731902AA8665A00DA97D2 /* FavoriteTableViewController.swift */; };
 		09D731932AA8683700DA97D2 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D731922AA8683700DA97D2 /* FavoriteViewModel.swift */; };
+		09D731952AA8753400DA97D2 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D731942AA8753400DA97D2 /* CoreDataService.swift */; };
 		09F54E882AA5A60F00107941 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F54E872AA5A60F00107941 /* AppDelegate.swift */; };
 		09F54E8A2AA5A60F00107941 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F54E892AA5A60F00107941 /* SceneDelegate.swift */; };
 		09F54E8C2AA5A60F00107941 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F54E8B2AA5A60F00107941 /* NewsTableViewController.swift */; };
@@ -48,6 +49,7 @@
 		09D7318E2AA8564E00DA97D2 /* NewsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewModel.swift; sourceTree = "<group>"; };
 		09D731902AA8665A00DA97D2 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		09D731922AA8683700DA97D2 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		09D731942AA8753400DA97D2 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		09F54E842AA5A60F00107941 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09F54E872AA5A60F00107941 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09F54E892AA5A60F00107941 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,12 +136,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		09292AEC2AA7327600E98017 /* Comonents */ = {
+		09292AEC2AA7327600E98017 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				09292AED2AA7328700E98017 /* SpinnerViewController.swift */,
 			);
-			path = Comonents;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		09292AF12AA73D6C00E98017 /* CoreData */ = {
@@ -149,6 +151,7 @@
 				09292AF42AA73FA100E98017 /* News+CoreDataClass.swift */,
 				09292AF52AA73FA100E98017 /* News+CoreDataProperties.swift */,
 				09292AF22AA73D7600E98017 /* CoreDataStack.swift */,
+				09D731942AA8753400DA97D2 /* CoreDataService.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -214,10 +217,10 @@
 		09F54E862AA5A60F00107941 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
-				09292AF12AA73D6C00E98017 /* CoreData */,
 				09F54E872AA5A60F00107941 /* AppDelegate.swift */,
 				09F54E892AA5A60F00107941 /* SceneDelegate.swift */,
-				09292AEC2AA7327600E98017 /* Comonents */,
+				09292AF12AA73D6C00E98017 /* CoreData */,
+				09292AEC2AA7327600E98017 /* Components */,
 				091F85B02AA6139D00843C82 /* Features */,
 				091F85AD2AA6132D00843C82 /* Extension */,
 				09F54EA02AA5AD0100107941 /* Networking */,
@@ -318,6 +321,7 @@
 				09F54E8C2AA5A60F00107941 /* NewsTableViewController.swift in Sources */,
 				09F54EAE2AA5BB3200107941 /* NewsTableViewCell.swift in Sources */,
 				09292B032AA75A2700E98017 /* NewsDetailViewController.swift in Sources */,
+				09D731952AA8753400DA97D2 /* CoreDataService.swift in Sources */,
 				09D731932AA8683700DA97D2 /* FavoriteViewModel.swift in Sources */,
 				09292AF02AA732AF00E98017 /* NewsViewController.swift in Sources */,
 				09D731912AA8665A00DA97D2 /* FavoriteTableViewController.swift in Sources */,

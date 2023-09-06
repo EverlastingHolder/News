@@ -9,16 +9,13 @@ class FavoriteViewModel: ObservableObject {
     }
     
     private func fetchNews() -> APIResult<[News]> {
-        let newsFetch: NSFetchRequest<News> = News.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: #keyPath(News.addDate), ascending: false)
-        newsFetch.sortDescriptors = [sortByDate]
-        do {
-            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
-            let results = try managedContext.fetch(newsFetch)
-            return .success(results)
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-            return .error
+        let result = CoreDataService.shared.fetchNews()
+        if let news = result {
+            if news.isEmpty {
+                return .empty
+            }
+            return .success(news)
         }
+        return .error
     }
 }

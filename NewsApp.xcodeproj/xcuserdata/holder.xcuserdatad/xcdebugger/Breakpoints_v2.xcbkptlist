@@ -93,8 +93,8 @@
             filePath = "NewsApp/Features/DetailNews/NewsDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "actionFavoriteButton(_:)"
             landmarkType = "7">
          </BreakpointContent>

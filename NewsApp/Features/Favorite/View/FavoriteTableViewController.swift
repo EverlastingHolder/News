@@ -21,8 +21,8 @@ class FavoriteTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detail = storyboard.instantiateViewController(identifier: "NewsDetailViewController") as! NewsDetailViewController
         
-//        detail.newsModel = news
-//        detail.isFavorite = fetchNews(item: news)
+        detail.newsModel = .init(news: news)
+        detail.isFavorite = true
         
         self.navigationController?.pushViewController(detail, animated: true)
     }

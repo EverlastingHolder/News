@@ -8,6 +8,7 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet private weak var newsImage: UIImageView!
     @IBOutlet private weak var publishedDateLabel: UILabel!
     @IBOutlet private weak var favoriteNavigationButton: UIBarButtonItem!
+    @IBOutlet private weak var linkLabel: UILabel!
     
     @IBOutlet weak var low: NSLayoutConstraint!
     @IBOutlet weak var high: NSLayoutConstraint!
@@ -32,6 +33,18 @@ class NewsDetailViewController: UIViewController {
         }
     }
     
+    private func setUpLink () {
+        linkLabel.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openLink))
+        linkLabel.addGestureRecognizer(tap)
+    }
+    
+    @objc private func openLink() {
+        if let urlString = linkLabel.text, let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     private func setImageButton(_ isFavorite: Bool) {
         if !isFavorite {
             favoriteNavigationButton.image = .init(systemName: "star")
@@ -41,37 +54,33 @@ class NewsDetailViewController: UIViewController {
     }
     
     private func setUp(newsModel: NewsModel) {
+        linkLabel.text = newsModel.url
         titleLabel.text = newsModel.title
         contentLabel.text = newsModel.content
         creatorLabel.text = newsModel.author
         publishedDateLabel.text = newsModel.publishedAt
         
+        newsImage.layer.cornerRadius = 12
+        
+        setUpLink()
+        
         setImageButton(isFavorite)
         
-        Task {
-            await newsImage.loadImage(urlString: newsModel.urlToImage, low: low, high: high)
-        }
-    }
-    
-    private func fetchNews(item: NewsModel) -> News? {
-        let newsFetch: NSFetchRequest<News> = News.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: #keyPath(News.addDate), ascending: false)
-        newsFetch.sortDescriptors = [sortByDate]
-        do {
-            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
-            let results = try managedContext.fetch(newsFetch)
-            return results.first(where: { item.content == $0.content && item.publishedAt == $0.publishedDate })
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-            return nil
+        if let data = newsModel.image, let image = UIImage(data: data) {
+            low.priority = .defaultLow
+            high.priority = .defaultHigh
+            newsImage.image = image
+        } else {
+            Task {
+                await newsImage.loadImage(urlString: newsModel.urlToImage, low: low, high: high)
+            }
         }
     }
     
     private func removeNews() {
         if let news = newsModel {
-            if let fetch = fetchNews(item: news) {
-                AppDelegate.sharedAppDelegate.coreDataStack.managedContext.delete(fetch)
-                AppDelegate.sharedAppDelegate.coreDataStack.saveContext()
+            if let item = CoreDataService.shared.findNews(news) {
+                CoreDataService.shared.removeNews(item)
                 setImageButton(false)
                 isFavorite = false
             }
@@ -79,16 +88,7 @@ class NewsDetailViewController: UIViewController {
     }
     
     private func addFavoriteNews(newsModel: NewsModel) {
-        let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
-        let news = News(context: managedContext)
-        news.setValue(Date(), forKey: #keyPath(News.addDate))
-        news.setValue(newsModel.title, forKey: #keyPath(News.title))
-        news.setValue(newsModel.author, forKey: #keyPath(News.author))
-        news.setValue(newsModel.content, forKey: #keyPath(News.content))
-        news.setValue(newsImage.image?.pngData(), forKey: #keyPath(News.image))
-        news.setValue(newsModel.publishedAt, forKey: #keyPath(News.publishedDate))
-        news.setValue(newsModel.description, forKey: #keyPath(News.newsDescription))
-        AppDelegate.sharedAppDelegate.coreDataStack.saveContext()
+        CoreDataService.shared.addFavoriteNews(newsModel: newsModel, image: newsImage.image?.pngData())
         setImageButton(true)
         isFavorite = true
     }

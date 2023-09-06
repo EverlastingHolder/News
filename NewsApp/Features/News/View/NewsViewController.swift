@@ -16,28 +16,31 @@ class NewsViewController: UIViewController {
             .sink { [unowned self] status in
                 switch status {
                 case .loading:
-                    addChild(child)
-                    child.view.frame = view.frame
-                    view.addSubview(child.view)
-                    child.didMove(toParent: self)
+                    addChildView(child)
                 case .success(let model):
-                    child.willMove(toParent: nil)
-                    child.view.removeFromSuperview()
-                    child.removeFromParent()
+                    removeProgressView()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let tableView = storyboard.instantiateViewController(identifier: "NewsTableViewController") as! NewsTableViewController
                     tableView.viewModel = .init(news: model)
+                    addChildView(tableView)
                     
-                    addChild(tableView)
-                    tableView.view.frame = view.frame
-                    view.addSubview(tableView.view)
-                    tableView.didMove(toParent: self)
-                case .error:
-                    child.willMove(toParent: nil)
-                    child.view.removeFromSuperview()
-                    child.removeFromParent()
+                default:
+                    removeProgressView()
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func removeProgressView() {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+    }
+    
+    private func addChildView(_ viewController: UIViewController) {
+        addChild(viewController)
+        viewController.view.frame = view.frame
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
     }
 }
