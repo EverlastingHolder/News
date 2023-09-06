@@ -218,10 +218,17 @@
                             <constraint firstItem="f0p-vY-hfY" firstAttribute="trailing" secondItem="ywF-Gn-i9c" secondAttribute="trailing" id="sbr-ZH-6Hv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="  " largeTitleDisplayMode="never" id="2Ba-Tj-8RW"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="I3d-Pz-8If">
+                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="euL-GC-RWs">
+                            <connections>
+                                <action selector="actionFavoriteButton:" destination="D0m-T9-aZb" id="EAX-vL-dZJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentLabel" destination="BCg-R2-MnI" id="9y8-g5-C8x"/>
                         <outlet property="creatorLabel" destination="XHX-mV-zI2" id="uxs-lc-UK7"/>
+                        <outlet property="favoriteNavigationButton" destination="euL-GC-RWs" id="3Dw-Ej-DV9"/>
                         <outlet property="high" destination="kdD-jq-9pG" id="ktX-zr-YKG"/>
                         <outlet property="low" destination="ZM2-JT-G1q" id="o3H-J5-Nfo"/>
                         <outlet property="newsImage" destination="aWh-dj-onH" id="ZlA-GK-r41"/>
@@ -270,6 +277,7 @@
     </scenes>
     <resources>
         <image name="newspaper.fill" catalog="system" width="128" height="112"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
