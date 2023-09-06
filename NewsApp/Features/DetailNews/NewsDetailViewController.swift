@@ -73,6 +73,7 @@ class NewsDetailViewController: UIViewController {
                 AppDelegate.sharedAppDelegate.coreDataStack.managedContext.delete(fetch)
                 AppDelegate.sharedAppDelegate.coreDataStack.saveContext()
                 setImageButton(false)
+                isFavorite = false
             }
         }
     }
@@ -82,10 +83,13 @@ class NewsDetailViewController: UIViewController {
         let news = News(context: managedContext)
         news.setValue(Date(), forKey: #keyPath(News.addDate))
         news.setValue(newsModel.title, forKey: #keyPath(News.title))
+        news.setValue(newsModel.author, forKey: #keyPath(News.author))
         news.setValue(newsModel.content, forKey: #keyPath(News.content))
         news.setValue(newsImage.image?.pngData(), forKey: #keyPath(News.image))
         news.setValue(newsModel.publishedAt, forKey: #keyPath(News.publishedDate))
+        news.setValue(newsModel.description, forKey: #keyPath(News.newsDescription))
         AppDelegate.sharedAppDelegate.coreDataStack.saveContext()
         setImageButton(true)
+        isFavorite = true
     }
 }

@@ -15,6 +15,19 @@ struct NewsModel: Codable, Hashable {
     let urlToImage: String?
     let publishedAt: String
     let content: String?
+    
+    var image: Data?
+    
+    private enum CodingKeys: CodingKey {
+        case source
+        case author
+        case title
+        case description
+        case url
+        case urlToImage
+        case publishedAt
+        case content
+    }
 }
 
 struct SourceModel: Codable, Hashable {

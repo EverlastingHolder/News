@@ -1,5 +1,4 @@
 import UIKit
-import CoreData
 
 class NewsTableViewCell: UITableViewCell {
     @IBOutlet private weak var containerView: UIView!
@@ -29,9 +28,14 @@ class NewsTableViewCell: UITableViewCell {
         titleLabel.text = cellType.title
         descriptionLabel.text = cellType.description
         publishedDateLabel.text = cellType.publishedDate
-        
-        Task {
-            await newsImage.loadImage(urlString: cellType.image, low: newsImageHeightLowConstraint, high: newsImageHeightConstraint)
+        if let data = cellType.image, let image = UIImage(data: data) {
+            newsImageHeightLowConstraint.priority = .defaultLow
+            newsImageHeightConstraint.priority = .defaultHigh
+            newsImage.image = image
+        } else {
+            Task {
+                await newsImage.loadImage(urlString: cellType.imageUrl, low: newsImageHeightLowConstraint, high: newsImageHeightConstraint)
+            }
         }
     }
 }
