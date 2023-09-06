@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class NewsViewController: UIViewController {
-    private var viewModel: NewsViewModel = .init()
+    private let viewModel: NewsViewModel = .init()
     private var cancellables = Set<AnyCancellable>()
     private let child = SpinnerViewController()
     
@@ -20,8 +20,9 @@ class NewsViewController: UIViewController {
                 case .success(let model):
                     removeProgressView()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tableView = storyboard.instantiateViewController(identifier: "NewsTableViewController") as! NewsTableViewController
-                    tableView.viewModel = .init(news: model)
+                    let tableView = storyboard.instantiateViewController(identifier: "NewsTableViewController") { coder in
+                        NewsTableViewController(viewModel: .init(news: model), coder: coder)
+                    }
                     addChildView(tableView)
                     
                 default:

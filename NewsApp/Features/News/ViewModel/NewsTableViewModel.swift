@@ -3,6 +3,8 @@ import Combine
 class NewsTableViewModel: ObservableObject {
     @Published var news: ResultModel
     
+    private var page = 1
+    
     private var isFetch: Bool = true
     private let service = NewsService()
     
@@ -10,8 +12,9 @@ class NewsTableViewModel: ObservableObject {
         self.news = news
     }
     
-    func getNews(page: Int) {
+    func getNews() {
         if isFetch {
+            page += 1
             Task {
                 let result = await service.getNews(page: page)
                 

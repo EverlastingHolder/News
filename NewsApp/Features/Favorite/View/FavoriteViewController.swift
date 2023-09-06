@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class FavoriteViewController: UIViewController {
-    private var viewModel: FavoriteViewModel = .init()
+    private let viewModel: FavoriteViewModel = .init()
     private var cancellables = Set<AnyCancellable>()
     private let child = SpinnerViewController()
     
@@ -26,8 +26,9 @@ class FavoriteViewController: UIViewController {
                     removeProgressView()
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tableView = storyboard.instantiateViewController(identifier: "FavoriteTableViewController") as! FavoriteTableViewController
-                    tableView.news = model
+                    let tableView = storyboard.instantiateViewController(identifier: "FavoriteTableViewController") { coder in
+                        FavoriteTableViewController(viewModel: .init(news: model), coder: coder)
+                    }
                     
                     addChildView(tableView)
                 case .error:
