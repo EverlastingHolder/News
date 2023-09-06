@@ -25,14 +25,12 @@ class NewsViewController: UIViewController {
                     child.view.removeFromSuperview()
                     child.removeFromParent()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tableView = storyboard.instantiateViewController(identifier: "NewsTableViewController") as! NewsTableViewController
-                    tableView.viewModel = viewModel
-                    tableView.news = viewModel.news
+                    let navigation = storyboard.instantiateViewController(identifier: "NewsNavigationController") as! NewsNavigationController
                     
-                    addChild(tableView)
-                    tableView.view.frame = view.frame
-                    view.addSubview(tableView.view)
-                    tableView.didMove(toParent: self)
+                    addChild(navigation)
+                    navigation.view.frame = view.frame
+                    view.addSubview(navigation.view)
+                    navigation.didMove(toParent: self)
                 case .error:
                     child.willMove(toParent: nil)
                     child.view.removeFromSuperview()

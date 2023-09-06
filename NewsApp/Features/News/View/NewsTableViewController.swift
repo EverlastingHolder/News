@@ -46,6 +46,16 @@ class NewsTableViewController: UITableViewController {
         return news.articles.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let news = news.articles[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detail = storyboard.instantiateViewController(identifier: "NewsDetailViewController") as! NewsDetailViewController
+        detail.news = news
+        
+        self.navigationController?.pushViewController(detail, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
         
